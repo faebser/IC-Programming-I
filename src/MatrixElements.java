@@ -22,21 +22,25 @@ public class MatrixElements extends PApplet {
         PApplet.main("MatrixElements");
     }
 
-    Element [] elements = new Element[1];
+    Element [] elements = new Element[16];
 
     public void settings () {
         smooth(8);
-        //fullScreen(P3D);
-        size(800, 800, P3D);
+        fullScreen(P3D);
+        //size(800, 800, P3D);
     }
 
     public void setup () {
         background(0);
         strokeJoin(ROUND);
-        fill(255);
+        fill(255, 0, 0);
         stroke(255);
         strokeWeight(2);
-        elements[0] = new Element(this, 550f, new PVector(100, 100));
+        float element_size = Math.min(height, width) / 6;
+        println(element_size);
+        for (int i = 0; i < elements.length; i++) {
+            elements[i] = new Element(this, element_size, new PVector(i * element_size + element_size, i * element_size + element_size));
+        }
     }
 
     public void draw () {

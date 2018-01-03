@@ -7,6 +7,7 @@ public class Element {
     float max_width;
     final static int points = (int)(Math.random() * 8 + 3);
     float[] point_distances;
+    float margin;
     float[] differences = new float[points];
     float[][] lines = new float[40][points];
     PVector position;
@@ -34,16 +35,21 @@ public class Element {
                 lines[i][point] = lines[0][point] - (differences[point] * i);
             }
         }
+
+        // calculate padding
+        // stroke width is 2
+        margin = max_width / 40;
     }
 
     public void draw () {
         parent.pushMatrix();
         {
             parent.translate(position.x, position.y);
+            parent.rect(0,0, max_width, max_width);
             for (int i = 0; i < lines.length ; i++) {
                 parent.pushMatrix();
                 {
-                    parent.translate(10, i * 12);
+                    parent.translate(0, i * margin);
                     for (int j = 0; j < lines[i].length -1 ; j++) {
                         parent.line(getPointDistance(point_distances, j), lines[i][j], getPointDistance(point_distances,j + 1), lines[i][j+1]);
                     }
@@ -64,7 +70,7 @@ public class Element {
 
     private float[] generatePointDistances(int amount) {
         float[] point_distances = new float[amount];
-        float max_graph_width = 550;
+        float max_graph_width = max_width;
         point_distances[0] = 0;
         for (int i = 1; i < point_distances.length - 1; i++) {
             float max = Math.min(max_graph_width, 150);
