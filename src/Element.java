@@ -3,23 +3,32 @@ import processing.core.PVector;
 
 public class Element {
 
-    PApplet parent;
-    float max_width;
-    float rest;
-    final static int points = (int)(Math.random() * 8 + 3);
-    float[] point_distances;
-    float margin;
-    float[] differences = new float[points];
-    float[][] lines = new float[40][points];
-    PVector position;
+    PApplet parent; // this is the Processing Applet that we need to draw stuff
+    float max_width; // the max width and height of our box excluding margin
+    float rest; // the difference between the total width/height and the inner box
+    final static int points = (int)(Math.random() * 8 + 3); // the amount of points our square, between 3 and 12
+    float[] point_distances; // the array to store the distance between the points
+    float margin; // the distance between the lines
+    float[] differences = new float[points]; // the array to store amount a point needs to move per step to reach zero
+    float[][] lines = new float[40][points]; // a two dimensional array for storing 40 times an array of our points
+    PVector position; // the calculated position for our box
 
 
+    // this is the constructor of our element. here we generate all the points
+    // to draw the lines later
     public Element (PApplet _parent, float _width, PVector _position) {
+        // we save the outer PApplet to draw our stuff later
         parent = _parent;
+        // the _width is the total width/height of the box
+        // we take bigger part of the golden cut for the lines
         max_width = _width * 0.618f;
+        // this is the rest fo the bigger box
+        // we need it later to center our content inside of the box
         rest = _width - max_width;
+        // we save the position to use later
         position = _position;
 
+        //
         point_distances = generatePointDistances(points);
         // set base line
         // and compute difference for each new line
@@ -35,8 +44,6 @@ public class Element {
             }
         }
 
-        // calculate padding
-        // stroke width is 2
         margin = max_width  / 40;
     }
 
