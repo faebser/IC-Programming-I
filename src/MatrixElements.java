@@ -45,7 +45,7 @@ public class MatrixElements extends PApplet {
         background(0);
         strokeJoin(ROUND);
         fill(255, 0, 0);
-        stroke(255);
+        stroke(255, 95);
         strokeWeight(2);
         float element_size = Math.min(height, width) / 5;
         for (int i = 0; i < elements.length; i++) {
@@ -54,6 +54,7 @@ public class MatrixElements extends PApplet {
     }
 
     public void draw () {
+        background(0);
         for(Element e: elements) {
             e.draw();
         }
