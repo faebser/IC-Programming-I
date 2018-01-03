@@ -89,26 +89,62 @@ public class MatrixElements extends PApplet {
         float element_size = Math.min(height, width) / 5;
         // old school for loop over the empty elements array
         for (int i = 0; i < elements.length; i++) {
-            // 
-            elements[i] = new Element(this, element_size, getPosition(i, element_size));
+            // Now we generate and stash our elements into the array
+            // If you want to follow the flow of the routine best
+            // change to the getPosition function and then the constructor
+            // of the Element class
+            elements[i] = new Element(
+                    this, // we have to pass in our instance of the PApplet
+                    element_size, // the calculated max size of the element including margin
+                    getPosition(i, element_size) // the position on the canvas coming from the getPosition method
+            );
         }
     }
 
+    // the draw method that gets called at the beginning of
+    // each frame
     public void draw () {
+        // we reset the background to black
+        // because of our mildly transparent
+        // stroke color
         background(0);
+        // new style for loop over our elements
         for(Element e: elements) {
-            e.draw();
+            e.draw(); // this draws the selected element
         }
     }
 
+    // this is a convinience method to calculate the correct
+    // position of an element given the its position in the array.
+    // We are going to return a PVector a class that contains a x and
+    // a y property (see also https://processing.org/reference/PVector.html)
+    // We need to pass in the position of the element, the index, and also
+    // the element size that we calculated earlier in the setup().
     private PVector getPosition(int index, float element_size) {
+        // the count of elements on one line of our big square
         final int count = 4;
+        // this variable helps with the readabilty of the next
+        // block of code
         final float half_element_size = element_size * 0.5f;
+        // we check if the height of the screen is smaller
+        // than the width, like most pc screens today
         if (height < width) {
-            return new PVector(index % count * element_size + (width * 0.5f - 4 * element_size * 0.5f),
-                    index / count * element_size + half_element_size );
+            // if height is smaller we need to account
+            // for the additional space on the horizontal axis
+            // of the screen.
+            // we return a new instance of a PVector.
+            return new PVector(
+                    index % count * element_size + (width * 0.5f - 4 * element_size * 0.5f),
+                    index / count * element_size + half_element_size
+            );
         }
-        return new PVector(index % count * element_size + half_element_size,
-                index / count * element_size + (height * 0.5f - 4 * element_size * 0.5f));
+        // if width is smaller than height
+        // we return a different PVector
+        // that accounts for the additional space on the
+        // vertical axis
+        return new PVector(
+                index % count * element_size + half_element_size,
+                index / count * element_size + (height * 0.5f - 4 * element_size * 0.5f)
+        );
     }
 }
