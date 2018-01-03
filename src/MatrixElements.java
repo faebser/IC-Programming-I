@@ -37,9 +37,11 @@ public class MatrixElements extends PApplet {
         stroke(255);
         strokeWeight(2);
         float element_size = Math.min(height, width) / 6;
-        println(element_size);
         for (int i = 0; i < elements.length; i++) {
-            elements[i] = new Element(this, element_size, new PVector(i * element_size + element_size, i * element_size + element_size));
+            PVector temp = new PVector(i % 4 * element_size + element_size, i / 4 * element_size + element_size);
+            println(i, width , temp.x);
+            println(i, width, temp.y);
+            elements[i] = new Element(this, element_size, temp);
         }
     }
 

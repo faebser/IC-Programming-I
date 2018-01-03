@@ -15,7 +15,7 @@ public class Element {
 
     public Element (PApplet _parent, float _width, PVector _position) {
         parent = _parent;
-        max_width = _width;
+        max_width = _width * 0.618f;
         position = _position;
 
         point_distances = generatePointDistances(points);
@@ -25,9 +25,6 @@ public class Element {
             float temp = (float)(Math.random() * 250 - 20);
             differences[i] = temp / (lines.length - 1);
             lines[0][i] = temp;
-            parent.print(lines[0][i]);
-            parent.print(", ");
-            parent.println(differences[i]);
         }
         // fill out the remaining lists
         for (int i = 1; i < lines.length; i++) {
@@ -38,14 +35,14 @@ public class Element {
 
         // calculate padding
         // stroke width is 2
-        margin = max_width / 40;
+        margin = max_width  / 40;
     }
 
     public void draw () {
         parent.pushMatrix();
         {
             parent.translate(position.x, position.y);
-            parent.rect(0,0, max_width, max_width);
+            parent.rect(0,0, max_width * 1.618122977f, max_width * 1.618122977f);
             for (int i = 0; i < lines.length ; i++) {
                 parent.pushMatrix();
                 {
