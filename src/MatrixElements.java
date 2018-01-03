@@ -30,18 +30,26 @@ public class MatrixElements extends PApplet {
         //size(800, 800, P3D);
     }
 
+    private PVector getPosition(int index, float element_size) {
+        final int count = 4;
+        final float half_element_size = element_size * 0.5f;
+        if (height < width) {
+            return new PVector(index % count * element_size + (width * 0.5f - 4 * element_size * 0.5f),
+                    index / count * element_size + half_element_size );
+        }
+        return new PVector(index % count * element_size + half_element_size,
+                index / count * element_size + (height * 0.5f - 4 * element_size * 0.5f));
+    }
+
     public void setup () {
         background(0);
         strokeJoin(ROUND);
         fill(255, 0, 0);
         stroke(255);
         strokeWeight(2);
-        float element_size = Math.min(height, width) / 6;
+        float element_size = Math.min(height, width) / 5;
         for (int i = 0; i < elements.length; i++) {
-            PVector temp = new PVector(i % 4 * element_size + element_size, i / 4 * element_size + element_size);
-            println(i, width , temp.x);
-            println(i, width, temp.y);
-            elements[i] = new Element(this, element_size, temp);
+            elements[i] = new Element(this, element_size, getPosition(i, element_size));
         }
     }
 

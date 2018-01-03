@@ -5,6 +5,7 @@ public class Element {
 
     PApplet parent;
     float max_width;
+    float rest;
     final static int points = (int)(Math.random() * 8 + 3);
     float[] point_distances;
     float margin;
@@ -16,6 +17,7 @@ public class Element {
     public Element (PApplet _parent, float _width, PVector _position) {
         parent = _parent;
         max_width = _width * 0.618f;
+        rest = _width - max_width;
         position = _position;
 
         point_distances = generatePointDistances(points);
@@ -42,7 +44,8 @@ public class Element {
         parent.pushMatrix();
         {
             parent.translate(position.x, position.y);
-            parent.rect(0,0, max_width * 1.618122977f, max_width * 1.618122977f);
+            //parent.rect(0,0, max_width * 1.618122977f, max_width * 1.618122977f);
+            parent.translate(rest * 0.5f , rest * 0.5f);
             for (int i = 0; i < lines.length ; i++) {
                 parent.pushMatrix();
                 {
