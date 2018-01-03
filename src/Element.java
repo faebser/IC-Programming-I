@@ -24,7 +24,7 @@ public class Element {
         // set base line
         // and compute difference for each new line
         for (int i = 0; i < lines[0].length; i++) {
-            float temp = (float)(Math.random() * 250 - 20);
+            float temp = (float)(Math.random() * max_width * 0.75 - 20);
             differences[i] = temp / (lines.length - 1);
             lines[0][i] = temp;
         }
