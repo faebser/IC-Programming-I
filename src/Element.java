@@ -30,41 +30,78 @@ public class Element {
 
         // we generate the different distances between our points
         point_distances = generatePointDistances(points);
-        // set base line
-        // and compute difference for each new line
+        // now we start with calculating the points for the first line
         for (int i = 0; i < lines[0].length; i++) {
-            float temp = (float)(Math.random() * max_width * 0.75 - 20);
+            // We generate a random value and scale it with three quarters
+            // of the element height and move it up by 20 pixels so we also
+            // have points that stick out on top
+            float temp = (float)(Math.random() * (max_width * 0.75) - 20);
+            // we calculate the step that each point has to take to
+            // get to zero at the end
             differences[i] = temp / (lines.length - 1);
+            // we save the point at the correct position
             lines[0][i] = temp;
         }
-        // fill out the remaining lists
+        // Now we need to add the remaining points to the lists
         for (int i = 1; i < lines.length; i++) {
+            // here we have a beautiful double for loop sandwich
+            // the outer layer iterates through all the lists
+            // the inner loop iterates over all the points in a list
             for(int point = 0; point < lines[i].length; point++) {
+                // we calculate our current point be subtracting
+                // from the starting point the product our calculated step
+                // times the index of the line
                 lines[i][point] = lines[0][point] - (differences[point] * i);
             }
         }
-
+        // just calculating the distance between the lines
         margin = max_width  / 40;
     }
 
+    // this is the draw method in which we actually get
+    // around to draw all the lines
     public void draw () {
+        // we push a new transformation matrix
+        // so that we can translate
         parent.pushMatrix();
         {
+            // we translate the to the position of our element
             parent.translate(position.x, position.y);
+            // You can uncomment the following line to see a debug rect
+            // drawn behind our lines
             //parent.rect(0,0, max_width * 1.618122977f, max_width * 1.618122977f);
+            // We translate again to center our element in the surrounding box
+            // to do that we split the space that is not take up by our element
+            // in half.
             parent.translate(rest * 0.5f , rest * 0.5f);
+            // Again the beautiful double for loop sandwich
             for (int i = 0; i < lines.length ; i++) {
+                // again we push a new transformation matrix
                 parent.pushMatrix();
                 {
+                    // we translate to the correct height
+                    // inside of our box to start the line
                     parent.translate(0, i * margin);
+                    // this is the inner part of the sandwich
+                    // that iterates over all the points in a line
+                    // but we will not iterate until the last line
+                    // but only to the line before it. The line
+                    // needs two points to be draw but the last point
+                    // concludes the line and does not continue it.
                     for (int j = 0; j < lines[i].length -1 ; j++) {
+                        // we draw a line from the current point to the next point
+                        // getting the position of the x axis from the getPointDistance
+                        // method.
                         parent.line(getPointDistance(point_distances, j), lines[i][j], getPointDistance(point_distances,j + 1), lines[i][j+1]);
                     }
                 }
+                // we pop the matrix
                 parent.popMatrix();
             }
         }
+        // again popping the matrix
         parent.popMatrix();
+        // and that's all we need for drawing all the lines of one element
     }
 
     private float getPointDistance(float[] _pointDistances, int index) {
