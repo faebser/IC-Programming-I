@@ -72,12 +72,12 @@ public class MatrixElements extends PApplet {
 
         // We set the stroke color to white
         // with just a tad of transparency (100 is solid)
-        stroke(255, 98);
+        stroke(255, 95);
         // We set the weight of the lines
         // to the smallest possible value
         // that still generates nice output
         // without too much visual noise
-        strokeWeight(1);
+        strokeWeight(3);
 
         // All our elements need to need to be squares
         // so we try to find the biggest square that is going
