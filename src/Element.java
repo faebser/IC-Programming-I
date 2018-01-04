@@ -28,7 +28,7 @@ public class Element {
         // we save the position to use later
         position = _position;
 
-        //
+        // we generate the different distances between our points
         point_distances = generatePointDistances(points);
         // set base line
         // and compute difference for each new line
@@ -75,17 +75,37 @@ public class Element {
         return sum;
     }
 
+    // this method returns an array of float numbers that
+    // describe the position of our points on the x axis.
     private float[] generatePointDistances(int amount) {
+        // first we build an array with the correct amount
+        // that we get from the call of the method
         float[] point_distances = new float[amount];
+        // we put the max_width from the outer scope into
+        // a local variable so we can work on it
         float max_graph_width = max_width;
+        // the first point is always at 0 on the x axis
         point_distances[0] = 0;
+        // we run a for loop over the array of values
+        // starting with the first and leaving out the last one
         for (int i = 1; i < point_distances.length - 1; i++) {
-            float max = Math.min(max_graph_width, 150);
+            // To get a nicer and not total random distribution
+            // of our points on the horizontal axis we take
+            // the smaller value of rest of the length and half of the length
+            float max = Math.min(max_graph_width, max_width * 0.5f);
+            // We generate a random number in the range from 0-1 and
+            // scale it with our max variable
             float temp = (float)(Math.random() * max);
+            // Now we subtract our current value from
+            // the full length to reduce the window for the
+            // random value
             max_graph_width = max_graph_width - temp;
+            // and save the value in the array
             point_distances[i] = temp;
         }
+        // the last point is always at the last value
         point_distances[point_distances.length - 1] = max_graph_width;
+        // we return the array with all the point values
         return point_distances;
     }
 }
