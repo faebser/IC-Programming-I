@@ -104,12 +104,16 @@ public class Element {
         // and that's all we need for drawing all the lines of one element
     }
 
+    // a beautiful and simple method that just returns the
+    // sum of the distance up and including a given index
     private float getPointDistance(float[] _pointDistances, int index) {
-        float sum = 0;
+        float sum = 0; // we start with a simple zero
         for (int i = 0; i <= index; i++) {
+            // and sum it up until we reached
+            // the given index
             sum = sum + _pointDistances[i];
         }
-        return sum;
+        return sum; // we return the sum
     }
 
     // this method returns an array of float numbers that
