@@ -1,10 +1,10 @@
 # Term project for "Programming I" 2017/2018
 
-inspired by reprogrammed art and "Der algoriamus des Manfred Mohr, Text 1963-1979"
+Inspired by [reprogrammed art](http://www.reprogrammed-art.cc/) and "Der Algorithmus des Manfred Mohr, Texte 1963 - 1979".
 
-a small project to reimagine a few works of manfred mohr in java/processing.
-
-<hr>
+* [the german book](http://spectorbooks.com/de/der-algorithmus-des-manfred-mohr)
+* [the exhibition at zkm](http://zkm.de/event/2013/06/der-algorithmus-des-manfred-mohr)
+* [short documentary on youtube](https://www.youtube.com/watch?v=867Gi1sbFns)
 
 ## Routine 32, "Matrix Elements"
 
