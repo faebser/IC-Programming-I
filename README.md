@@ -18,6 +18,7 @@ a small project to reimagine a few works of manfred mohr in java/processing.
 > Punkten miteinander verbunden wird. Die aufeinanderfolgenden
 > Linien werden so berechnet, das die vierzigste Linie horizontal
 > endet.
+>
 > aus "Der Algorithmus des Manfred Mohr, Texte 1963 - 1979"
 
 > ### Manfred Mohr
@@ -27,4 +28,5 @@ a small project to reimagine a few works of manfred mohr in java/processing.
 > (between three and twelve) of points. Each of the following
 > lines changes its shape until the last line ends up
 > in horizontal state.
+>
 > from "Der Algorithmus des Manfred Mohr, Texte 1963 - 1979
