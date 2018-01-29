@@ -4,20 +4,32 @@ inspired by reprogrammed art and "Der algoriamus des Manfred Mohr, Text 1963-197
 
 a small project to reimagine a few works of manfred mohr in java/processing.
 
+<hr>
+
 ## Routine 32, "Matrix Elements"
 
 ![Output of Routine 32, "Matrix Elements"](/images/MatrixElements.png)
 
-text
+> Manfred Mohr
+> Programm 32 - "Matrix Elemente", 1970
 
-## projekt 2
+> In jedem der sechzehn Quadrate von 5 x 5 cm sind vierzig Linien
+> angeordnet. Die obere Linie wird gebildet, indem eine bestimmte
+> Zahl (zwischen drei und zwölf) von zufällig ausgewählten
+> Punkten miteinander verbunden wird. Die aufeinanderfolgenden
+> Linien werden so berechnet, das die vierzigste Linie horizontal
+> endet.
 
-bild
+> aus "Der Algorithmus des Manfred Mohr, Texte 1963 - 1979"
 
-text
+> Manfred Mohr
 
-## projekt 3
+> Routine 32 - "Matrix Elements", 1970
 
-bild
+> In each of the sixteen square of 5 by 5 cm are forty lines
+> arranged. The topmost line consists of a random amount
+> (between three and twelve) of points. Each of the following
+> lines changes its shape until the last line ends up
+> in horizontal state.
 
-text
+> from "Der Algorithmus des Manfred Mohr, Texte 1963 - 1979
